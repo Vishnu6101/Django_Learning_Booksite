@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Django Book Page</title>
+  </head>
+  <body class="bg-blue-200">
+    <div class="mt-5 mx-5">
+      <h1 class="text-center text-4xl bg-blue-500 rounded-full p-10">
+        Programming Books
+      </h1>
+    </div>
+
+    <div class="my-10 grid grid-cols-3 gap-5">
+      {% for book in books %}
+      <a
+        href="{% url 'book.show' book.id %}"
+        ,
+        class="text-center m-4 p-2 rounded-lg shadow-lg shadow-blue-500 outline hover:outline-blue-500"
+        ,
+        target="_blank"
+      >
+        <div class="px-5 py-5 bg-blue-500 rounded-lg">
+          <img src="{{ book.thumbnailUrl }}" width="200" class="mx-auto" />
+        </div>
+        <p class="p-2">{{ book.title }}</p>
+      </a>
+      {% endfor %}
+    </div>
+  </body>
+</html>
