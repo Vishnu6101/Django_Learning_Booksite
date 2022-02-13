@@ -1,4 +1,4 @@
-{% extends 'books/base.html' %} 
+{% extends 'base.html' %} 
 
 {% block title %}
   {{book.title}}
@@ -45,7 +45,8 @@
         <p class="mt-5">{{ book.category }}</p>
       </div>
       <div class="p-5 mt-5">
-        <p class="text-3xl">Reviews</p>
+        <p class="text-3xl">Write a Review</p>
+        {% if user.is_authenticated %}
         <form method="POST" action="{% url 'book.review' book.id %}">
           {% csrf_token %}
           <textarea
@@ -62,14 +63,22 @@
             Submit
           </button>
         </form>
+        {% else %}
+          <div class="mt-5 py-2">
+            <a href="{% url 'login' %}?next={{ request.path }}" class="text-blue-700">Login</a> to write a review
+          </div>
+        {% endif %}
       </div>
       <div class="p-5 mt-5">
         <p class="text-3xl">All Reviews</p>
         <div class="mt-5">
           {% for review in reviews %}
-          <div class="flex justify-between">
+          <div class="my-5">
+            <div class="flex text-gray-600 justify-between">
+              <p>{{ review.userId }}</p>
+              <p>{{ review.createdAt }}</p>
+            </div>
             <p>{{ review.body }}</p>
-            <p>{{ review.createdAt }}</p>
           </div>
           {% endfor %}
         </div>

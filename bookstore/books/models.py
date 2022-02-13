@@ -1,4 +1,6 @@
+from statistics import mode
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -25,6 +27,7 @@ class Book(models.Model):
 
 class Review(models.Model):
     body = models.TextField()
+    userId = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     createdAt = models.DateTimeField(auto_now=True)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
 
