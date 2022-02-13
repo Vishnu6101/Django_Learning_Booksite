@@ -1,13 +1,11 @@
 {% extends 'books/base.html' %} 
 
-{% block title %} 
-  Books 
-{% endblock %} 
+{% block title %} {{ author }} {% endblock %}
 
 {% block content %}
 <div class="mt-5 mx-5">
   <h1 class="text-center text-4xl bg-blue-500 rounded-full p-10">
-    Programming Books
+    {{ author }}'s Books
   </h1>
 </div>
 

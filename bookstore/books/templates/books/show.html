@@ -1,66 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title>Book page</title>
-  </head>
-  <body class="bg-blue-200">
-    <div>
-      <h1
-        class="text-center text-4xl mt-5 mx-5 p-10 bg-blue-500 rounded-full shadow-lg shadow-blue-500"
-      >
-        {{ book.title }}
-      </h1>
-      <div class="px-5 py-5 flex justify-between">
-        <div
-          class="w-1/4 p-5 mt-10 bg-blue-500 rounded-lg shadow-lg shadow-blue-500"
-        >
-          <img src="{{ book.thumbnailUrl }}" width="100%" />
-          <p class="mt-5">ISBN {{ book.isbn }}</p>
-          <p class="mt-5">Published on {{ book.publishedOn }}</p>
-        </div>
-        <div class="w-3/4 mt-10 p-5">
-          <div class="p-5 mt-5">
-            <p class="text-3xl">About</p>
-            <p class="mt-5 indent-16">{{ book.shortDescription }}</p>
+{% extends 'books/base.html' %} 
+
+{% block title %}
+  {{book.title}}
+{% endblock %}
+
+{% block content %}
+<div>
+  <h1
+    class="text-center text-4xl mt-5 mx-5 p-10 bg-blue-500 rounded-full shadow-lg shadow-blue-500"
+  >
+    {{ book.title }}
+  </h1>
+  <div class="px-5 py-5 flex justify-between">
+    <div
+      class="w-1/4 p-5 mt-10 bg-blue-500 rounded-lg shadow-lg shadow-blue-500"
+    >
+      <img src="{{ book.thumbnailUrl }}" width="100%" />
+      <p class="mt-5">ISBN {{ book.isbn }}</p>
+      <p class="mt-5">Published on {{ book.publishedOn }}</p>
+    </div>
+    <div class="w-3/4 mt-10 p-5">
+      <div class="p-5 mt-5">
+        <p class="text-3xl">About</p>
+        <p class="mt-5 indent-16">{{ book.shortDescription }}</p>
+      </div>
+      <div class="p-5 mt-5">
+        <p class="text-3xl">Pages</p>
+        <p class="mt-5">Total {{ book.pageCount }} Pages</p>
+      </div>
+      <div class="p-5 mt-5">
+        <p class="text-3xl">Authors</p>
+        {% for author in authors %}
+          <div class="mt-5">
+            <a class="text-blue-700" href="{% url 'author.books' author %}" target="_blank">{{ author }}</a>
           </div>
-          <div class="p-5 mt-5">
-            <p class="text-3xl">Pages</p>
-            <p class="mt-5">Total {{ book.pageCount }} Pages</p>
+        {% endfor %}
+      </div>
+      <div class="p-5 mt-5">
+        <p class="text-3xl">Description</p>
+        <p class="mt-5 indent-16">{{ book.longDescription }}</p>
+      </div>
+      <div class="p-5 mt-5">
+        <p class="text-3xl">Category</p>
+        <p class="mt-5">{{ book.category }}</p>
+      </div>
+      <div class="p-5 mt-5">
+        <p class="text-3xl">Reviews</p>
+        <form method="POST" action="{% url 'book.review' book.id %}">
+          {% csrf_token %}
+          <textarea
+            name="review"
+            placeholder="Write your review here"
+            cols="30"
+            rows="5"
+            class="p-2 my-2 w-full rounded-lg border border-blue-500"
+          ></textarea>
+          <button
+            type="submit"
+            class="m-2 px-2 bg-transparent text-blue-700 rounded-lg border border-blue-500 float-right"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+      <div class="p-5 mt-5">
+        <p class="text-3xl">All Reviews</p>
+        <div class="mt-5">
+          {% for review in reviews %}
+          <div class="flex justify-between">
+            <p>{{ review.body }}</p>
+            <p>{{ review.createdAt }}</p>
           </div>
-          <div class="p-5 mt-5">
-            <p class="text-3xl">Authors</p>
-            <p class="mt-5">{{ book.authors }}</p>
-          </div>
-          <div class="p-5 mt-5">
-            <p class="text-3xl">Description</p>
-            <p class="mt-5 indent-16">{{ book.longDescription }}</p>
-          </div>
-          <div class="p-5 mt-5">
-            <p class="text-3xl">Category</p>
-            <p class="mt-5">{{ book.category }}</p>
-          </div>
-          <div class="p-5 mt-5">
-            <p class="text-3xl">Reviews</p>
-            <form method="POST" action="{% url 'book.review' book.id %}">
-              {% csrf_token %}
-              <textarea name="review" placeholder="Write your review here" cols="30" rows="5" class="p-2 my-2 w-full rounded-lg border border-blue-500"></textarea>
-              <button type="submit" class="m-2 px-2 bg-transparent text-blue-700 rounded-lg border border-blue-500 float-right">Submit</button>
-            </form>
-          </div>
-          <div class="p-5 mt-5">
-            <p class="text-3xl">All Reviews</p>
-            <p class="mt-5">
-              {% for review in reviews.all %}
-                {{ review.body }}
-              {% endfor %}
-            </p>
-          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
-  </body>
-</html>
+  </div>
+</div>
+
+{% endblock %}
