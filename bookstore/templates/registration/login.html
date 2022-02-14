@@ -4,8 +4,13 @@
   Login
 {% endblock %}
 
+{% block page_title %}
+  Log In
+{% endblock %}
+
 
 {% block content %} 
+<div>
   {% if form.errors %}
     <p class="text-2xl text-center">Your username and password didn't match. Please try again.</p>
   {% endif %} 
@@ -42,5 +47,5 @@
       <a href="{% url 'password_reset' %}" class="text-blue-700">Forgot password?</a>
     </p>
   </div>
-
+</div>
 {% endblock %}

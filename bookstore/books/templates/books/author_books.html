@@ -2,12 +2,9 @@
 
 {% block title %} {{ author }} {% endblock %}
 
+{% block page_title %} {{ author }}'s Books {% endblock %}
+
 {% block content %}
-<div class="mt-5 mx-5">
-  <h1 class="text-center text-4xl bg-blue-500 rounded-full p-10">
-    {{ author }}'s Books
-  </h1>
-</div>
 
 <div class="my-10 grid grid-cols-3 gap-5">
   {% for book in books %}
@@ -15,8 +12,6 @@
     href="{% url 'book.show' book.id %}"
     ,
     class="text-center m-4 p-2 rounded-lg shadow-lg shadow-blue-500 outline hover:outline-blue-500"
-    ,
-    target="_blank"
   >
     <div class="px-5 py-5 bg-blue-500 rounded-lg">
       <img src="{{ book.image.url }}" width="200" class="mx-auto" />

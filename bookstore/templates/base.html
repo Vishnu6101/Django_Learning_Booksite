@@ -12,21 +12,32 @@
     </title>
   </head>
   <body class="bg-blue-200">
-    <nav class="flex w-full bg-blue-500 mb-5 justify-between">
-      <div class="text-1xl p-2 text-white">
-        <p>Book Paradise</p>
-      </div>
-      {% if user.is_authenticated %}
-      <div class="text-1xl text-white border border-blue-700 bg-blue-300 h-1/2 m-2 rounded">
-        <a href="{% url 'logout' %}" class="p-2">Logout</a>
-      </div>
-      {% else %}
-      <div class="text-1xl text-white border border-blue-700 bg-blue-300 h-1/2 m-2 rounded">
-        <a href="{% url 'login' %}" class="p-2">Login</a>
-      </div>
-      {% endif %}
-    </nav>
-    {% block content %}
-    {% endblock %}
+    <div>
+      <nav class="sticky top-0 flex w-full bg-blue-500 justify-between">
+        <div class="text-1xl p-2 text-white">
+          <p>Book Paradise</p>
+        </div>
+        <div>
+          <h1 class="text-center text-2xl bg-blue-500 rounded-full p-2 text-white">
+            {% block page_title %}
+              Welcome
+            {% endblock %}
+          </h1>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="text-1xl text-white border border-blue-700 bg-blue-300 h-1/2 m-2 rounded">
+          <a href="{% url 'logout' %}" class="p-2">Logout</a>
+        </div>
+        {% else %}
+        <div class="text-1xl text-white border border-blue-700 bg-blue-300 h-1/2 m-2 rounded">
+          <a href="{% url 'login' %}" class="p-2">Login</a>
+        </div>
+        {% endif %}
+      </nav>
+    </div>
+    <p>
+      {% block content %}
+      {% endblock %}
+    </p>
   </body>
 </html>

@@ -4,13 +4,12 @@
   {{book.title}}
 {% endblock %}
 
+{% block page_title %}
+  {{ book.title }}
+{% endblock %}
+
 {% block content %}
 <div>
-  <h1
-    class="text-center text-4xl mt-5 mx-5 p-10 bg-blue-500 rounded-full shadow-lg shadow-blue-500"
-  >
-    {{ book.title }}
-  </h1>
   <div class="px-5 py-5 flex justify-between">
     <div
       class="w-1/4 p-5 mt-10 bg-blue-500 rounded-lg shadow-lg shadow-blue-500"
@@ -32,7 +31,7 @@
         <p class="text-3xl">Authors</p>
         {% for author in authors %}
           <div class="mt-5">
-            <a class="text-blue-700" href="{% url 'author.books' author %}" target="_blank">{{ author }}</a>
+            <a class="text-blue-700" href="{% url 'author.books' author %}">{{ author }}</a>
           </div>
         {% endfor %}
       </div>
