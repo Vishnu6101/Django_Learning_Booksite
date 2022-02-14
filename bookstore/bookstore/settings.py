@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from distutils.debug import DEBUG
 from email.policy import default
 from pathlib import Path
 import os
@@ -28,9 +29,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'w=%^^--q6lx1%51@x*j_#urc$$b%gm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') == 'True'
 
-ALLOWED_HOSTS = [
-    'booksite-corner.herokuapp.com/',
-    'git.heroku.com/booksite-corner.git']
+ALLOWED_HOSTS = ['booksite-corner.herokuapp.com/']
 
 
 # Application definition
