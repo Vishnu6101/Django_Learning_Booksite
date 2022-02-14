@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'w=%^^--q6lx1%51@x*j_#urc$$b%gmag5b82gcb180q59x629')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'w=%^^--q6lx1%51@x*j_#urc$$b%gmag5b82gcb180q59x629{q.bE"/FQ_Tr%VW#Q|N#qHxNb')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') == 'True'
@@ -148,3 +148,11 @@ EMAIL_HOST_PASSWORD = 'znlyniaekksasssm'
 
 MEDIA_ROOT = 'media'
 MEDIA_URL = 'media/'
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+SECURE_HSTS_SECONDS = 3600
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_SSL_REDIRECT = True
