@@ -134,7 +134,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/book'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login'
 LOGOUT_REDIRECT_URL = '/login'
 
@@ -145,8 +145,8 @@ EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
-MEDIA_ROOT = 'media'
-MEDIA_URL = 'media/'
+# MEDIA_ROOT = 'media'
+# MEDIA_URL = 'media/'
 
 # CSRF_COOKIE_SECURE = True
 # SESSION_COOKIE_SECURE = True
