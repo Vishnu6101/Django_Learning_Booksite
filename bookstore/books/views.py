@@ -6,6 +6,8 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import QuerySet
 
+from books.form import ReviewForm
+
 # booksData = open('/home/user/Django Projects/bookstore/books.json').read()
 # data = json.loads(booksData)
 # Create your views here.
@@ -28,6 +30,7 @@ class BookDetailView(generic.DeleteView):
         # Add reviews to our context
         context['reviews'] = context['book'].review_set.order_by('-createdAt')
         context['authors'] = context['book'].authors.all()
+        context['form'] = ReviewForm()
         return context
 
 def author(request, author):
@@ -68,10 +71,12 @@ def author(request, author):
 
 def review(request, id):
     if request.user.is_authenticated:
-        body = request.POST['review']
+        newReview = Review(book_id=id, userId=request.user)
+        form = ReviewForm(request.POST, instance=newReview)
+        if form.is_valid():
+            form.save()
+        # body = request.POST['review']
         
-        newReview = Review(body=body, book_id=id, userId=request.user)
-        newReview.save()
-        
-        url = '/book/{}'.format(id)
-    return redirect(url)
+        # newReview = Review(body=body, book_id=id, userId=request.user)
+        # newReview.save()
+    return redirect(f"/book/{id}")
