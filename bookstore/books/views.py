@@ -79,4 +79,4 @@ def review(request, id):
         
         # newReview = Review(body=body, book_id=id, userId=request.user)
         # newReview.save()
-    return redirect(f"/book/{id}")
+    return redirect(f"/{id}")
