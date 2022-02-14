@@ -1,4 +1,3 @@
-from statistics import mode
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -20,7 +19,7 @@ class Book(models.Model):
     publishedOn = models.DateTimeField(null=True)
     isbn = models.CharField(max_length=256, null=True)
     authors = models.ManyToManyField(Author)
-    image = models.ImageField(upload_to='images', null=True)
+    # image = models.ImageField(upload_to='images', null=True)
 
     def __str__(self) -> str:
         return f"{self.id}. {self.title}"
