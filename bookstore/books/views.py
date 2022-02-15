@@ -3,7 +3,6 @@ from django.shortcuts import redirect, render, get_object_or_404
 # from django.http import HttpResponse, Http404
 from books.models import Book, Review
 from django.views import generic
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import QuerySet
 
 from books.form import ReviewForm
@@ -79,4 +78,4 @@ def review(request, id):
         
         # newReview = Review(body=body, book_id=id, userId=request.user)
         # newReview.save()
-    return redirect(f"/{id}")
+    return redirect(f"/book/{id}")
