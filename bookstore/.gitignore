@@ -1,2 +1,8 @@
+.DS_Store
 downloaded_images/*.jpg
 referenceCommands.txt
+books/__pycache__/
+bookstore/__pycache__/
+*.py[cod]
+db.sqlite3
+books.json
