@@ -6,7 +6,7 @@ Reference : [Django - A python framework | Full Course](https://www.youtube.com/
 ***
 Deployed with `Heroku`
 
-### App URL : *[booksite-corner.com](https://booksite-corner.herokuapp.com/book/)*
+### App URL : *[booksite-corner.com](https://booksite-corner.herokuapp.com/)*
 ***
 
 ## Technologies used:
