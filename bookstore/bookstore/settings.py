@@ -26,8 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'w=%^^--q6lx1%51@x*j_#urc$$b%gmag5b82gcb180q59x629{q.bE"/FQ_Tr%VW#Q|N#qHxNb')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.environ.get('DJANGO_DEBUG', '') == 'True'
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') == 'True'
 
 ALLOWED_HOSTS = ['booksite-corner.herokuapp.com', 'localhost']
 

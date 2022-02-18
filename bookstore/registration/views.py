@@ -20,10 +20,9 @@ def userRegistration(request):
             msg = "Passwords are not matching, Please check"
             messages.error(request, msg)
         else:
-            user = User.objects.create(username=username, email=email, password=password1)
+            user = User.objects.create_user(username, email, password1)
             user.save()
-            msg = "User Registered Successfully"
-            messages.success(request, msg)
+            return redirect('login')
         return redirect('user.registration')
     else:
         return render(request, 'registration/register.html')
