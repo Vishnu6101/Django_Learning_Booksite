@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock %}
+
+{% block page_title %}
+    Home Page
+{% endblock %}
+
+{% block content %}
+<div class="h-screen text-center bg-gradient-to-br from-sky-500 to-indigo-700">
+    <div class="text-2xl p-10">
+        <div class="bg-gradient-to-r from-blue-500 to-purple-500 m-5 rounded-lg">
+            <p class="py-1">Welcome to Book Paradise</p>
+            <p class="py-1">A place for absolute readers</p>
+        </div>
+    </div>
+    <div class="flex">
+        <div class="box-border w-60 m-10 bg-gradient-to-r from-blue-500 to-purple-500 p-5 rounded-lg flex-auto w-32">
+            <p>Select a book</p>
+            <p>...</p>
+            <p>Read it</p>
+            <p>...</p>
+            <p>Write a Review</p>
+        </div>
+        <div class="box-border h-48 w-96 rounded-lg m-10 bg-gradient-to-r from-blue-500 to-purple-500 p-5 flex-auto w-64">
+            <p class="m-2 text-2xl">Write your reviews</p>
+            <div class="box-border bg-gradient-to-br from-sky-500 to-indigo-700 rounded-lg h-3/4 text-center p-5">
+                <p class="text-1xl text-left">Fantastic book, MUST READ!!!</p>
+                <div class="flex justify-between">
+                    <p>Vishnu</p>
+                    <p>Feb. 14, 2022, 9:08 p.m.</p>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-2xl p-5 bg-gradient-to-r from-blue-500 to-purple-500 m-10 rounded-lg">
+        <p>Scroll Below to create a new account</p>
+    </div>
+</div>
+
+<div class="m-5 text-center">
+    <h2 class="text-2xl">Welcome, Nice to See you here</h2>
+    <p class="text-1xl">Fill the below details to create a new account</p>
+</div>
+
+<div>
+    {% if user.is_authenticated %}
+    <div class="text-center m-10">
+        <h1 class="text-3xl">You are logged in</h1>
+    </div>
+    <div class="text-center m-10">
+        <a href="{% url 'book.all' %}" class="text-blue-700 text-1xl">Click here to visit the home page</a>
+    </div>
+    {% else %}
+    <form method="post" action="{% url 'user.registration' %}" class="w-fit bg-gradient-to-br from-sky-500 to-indigo-700 p-5 mx-auto rounded-lg mt-10">
+        {% csrf_token %}
+        <div>
+            <div class="flex py-2 m-2">
+                <div class="mx-auto mr-3"><label for="username">UserName : </label></div>
+                <div><input type="text" name="username" class="ml-5" required></div>
+            </div>
+            <div class="flex py-2 m-2">
+                <div class="mx-auto mr-3"><label for="username">Email Address : </label></div>
+                <div><input type="email" name="email" class="ml-5" required></div>
+            </div>
+            <div class="flex py-2 m-2">
+                <div class="mx-auto mr-3"><label for="username">Password : </label></div>
+                <div><input type="password" name="password1" class="ml-5" required></div>
+            </div>
+            <div class="flex py-2 m-2">
+                <div class="mx-auto mr-3"><label for="username">Confirm Password : </label></div>
+                <div><input type="password" name="password2" class="ml-5" required></div>
+            </div>
+            <div class="w-1/2 mx-auto text-center border border-blue-700 rounded-lg bg-blue-200 mt-2">
+                <input type="submit" value="Register">
+            </div>
+        </div>
+    {% endif %}
+    </form>
+    <div class="my-10 text-center text-2xl">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
